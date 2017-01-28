@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>com.stome.workbanch</groupId>
+    <artifactId>workbanch-parent</artifactId>
+    <version>1.0</version>
+	<relativePath>../../../../pom.xml</relativePath>
+  </parent>
+  
+  <packaging>jar</packaging>
+  <artifactId>workbanch-common-service-facade</artifactId>
+  
+  <name>Stome workbanch-common-service-facade</name>
+  <description>Stome workbanch-common-service-facade</description>
+  <url>http://maven.apache.org</url>
+  
+
+  <dependencies>
+    
+  </dependencies>
+</project>
