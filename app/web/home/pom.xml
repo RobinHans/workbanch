@@ -17,7 +17,17 @@
   <name>workbanch-web-home Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-    
+  
+      <dependency>
+	      <groupId>com.stome.workbanch</groupId>
+  		  <artifactId>workbanch-biz-shared</artifactId>
+	  </dependency>
+	  
+      <dependency>
+	      <groupId>com.stome.workbanch</groupId>
+  		  <artifactId>workbanch-biz-manager</artifactId>
+	  </dependency>
+	  
   </dependencies>
   
   
