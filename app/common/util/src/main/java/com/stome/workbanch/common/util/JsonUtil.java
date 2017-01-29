@@ -1,0 +1,242 @@
+/**
+ * Stome.com Co.,Ltd.
+ * Copyright (c) 2004-2017, All Rights Reserved.
+ */
+package com.stome.workbanch.common.util;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.log4j.Logger;
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.JavaType;
+import org.codehaus.jackson.type.TypeReference;
+
+/** 
+ * JSON解析工具类
+ * 
+ * @author Robin 
+ * @date 2017-01-29 06:40:41 
+ * @version $id: JsonUtil.java v1.0 
+ */
+public class JsonUtil {
+
+    /** log4j component */
+    private static final Logger       LOGGER = Logger.getLogger(JsonUtil.class);
+
+    /** ObjectMapper对象 */
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+
+    static {
+        // 是否允许解析使用Java/C++ 样式的注释（包括'/'+'*' 和'//' 变量）
+        MAPPER.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+        // 是否将允许使用非双引号属性名字
+        MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        // 是否允许单引号来包住属性名称和字符串值
+        MAPPER.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        // 是否允许JSON字符串包含非引号控制字符（值小于32的ASCII字符，包含制表符和换行符）。 如果该属性关闭，则如果遇到这些字符，则会抛出异常
+        MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+        // 属性名称是否可以被String#intern 规范化表示，注意必须设置CANONICALIZE_FIELD_NAMES为true
+        MAPPER.configure(JsonParser.Feature.INTERN_FIELD_NAMES, true);
+        // 属性名称是否被规范化。
+        MAPPER.configure(JsonParser.Feature.CANONICALIZE_FIELD_NAMES, true);
+        // 当遇到未知属性（没有映射到属性，没有任何setter或者任何可以处理它的handler），是否应该抛出一个JsonMappingException异常
+        MAPPER.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // 当遇到JSON null的对象是java 原始类型，则是否抛出异常。当false时，则使用0 for 'int', 0.0 for double 来设定原始对象初始值。
+        MAPPER.configure(DeserializationConfig.Feature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
+    }
+
+    /** 
+     * 将object对象转化为json字符串
+     * 
+     * @author Robin
+     * @date 2017-01-29 06:43:27 
+     * @version v1.0 
+     * @param obj       object对象
+     * @return 
+     */
+    public static String object2Json(Object obj) {
+        try {
+            return MAPPER.writeValueAsString(obj);
+        } catch (Exception e) {
+            LOGGER.error("converting object to json string occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 将json字符串转化为java bean对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 06:59:53 
+     * @version v1.0 
+     * @param json      json字符串
+     * @param clazz     转换目标类型
+     * @return 
+     */
+    public static <T> T json2Object(String json, Class<T> clazz) {
+        try {
+            return MAPPER.readValue(json, clazz);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("converting json string to object occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 将json字符串转化为java bean对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 07:02:48 
+     * @version v1.0 
+     * @param json                json字符串
+     * @param typeReference       转换目标类型
+     * @return 
+     */
+    public static <T> T json2Object(String json, TypeReference<T> typeReference) {
+        try {
+            return MAPPER.readValue(json, typeReference);
+        } catch (Exception e) {
+            LOGGER.error("converting json string to object occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 将json字符串转化为list对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 07:58:17 
+     * @version v1.0 
+     * @param json             json字符串
+     * @param typeReference    目标类型描述对象
+     * @return 
+     */
+    public static <T> List<T> json2List(String json, TypeReference<List<T>> typeReference) {
+        try {
+            return MAPPER.readValue(json, typeReference);
+        } catch (Exception e) {
+            LOGGER.error("converting json string to list occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 将json字符串转化为list对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 07:58:17 
+     * @version v1.0 
+     * @param json     json字符串
+     * @param clazz    目标类型
+     * @return 
+     */
+    public static <T> List<T> json2List(String json, Class<T> clazz) {
+        try {
+            JavaType javaType = getCollectionType(clazz);
+            return MAPPER.readValue(json, javaType);
+        } catch (Exception e) {
+            LOGGER.error("converting json string to list occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 将json字符串转化为map对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 07:56:41 
+     * @version v1.0 
+     * @param json    json字符串
+     * @param clazz   目标类型 
+     * @return 
+     */
+    public static <T> Map<String, T> json2Map(String json, Class<T> clazz) {
+        try {
+            JavaType javaType = getMapType(clazz);
+            return MAPPER.readValue(json, javaType);
+        } catch (Exception e) {
+            LOGGER.error("converting json string to map occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 将json字符串转化为map对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 07:56:41 
+     * @version v1.0 
+     * @param clazz   目标类型 
+     * @param json    json字符串
+     * @return 
+     */
+    public static <T> Map<String, T> json2Map(Class<T> clazz, String json) {
+        try {
+            Map<String, Map<String, Object>> map = MAPPER.readValue(json,
+                new TypeReference<Map<String, T>>() {
+                });
+            Map<String, T> result = new HashMap<String, T>();
+
+            for (Entry<String, Map<String, Object>> e : map.entrySet()) {
+                result.put(e.getKey(), map2Object(e.getValue(), clazz));
+            }
+            return result;
+        } catch (Exception e) {
+            LOGGER.error("converting json string to map occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 将map转化为java bean对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 07:55:50 
+     * @version v1.0 
+     * @param map     map对象
+     * @param clazz   目标类型
+     * @return 
+     */
+    @SuppressWarnings("rawtypes")
+    public static <T> T map2Object(Map map, Class<T> clazz) {
+        try {
+            return MAPPER.convertValue(map, clazz);
+        } catch (Exception e) {
+            LOGGER.error("converting map to object occured errors", e);
+        }
+        return null;
+    }
+
+    /** 
+     * 获取json转list类型描述对象
+     * @author Robin
+     * @date 2017-01-29 07:54:51 
+     * @version v1.0 
+     * @param clazz    list中存储的目标对象类型
+     * @return 
+     */
+    public static <T> JavaType getCollectionType(Class<T> clazz) {
+        return MAPPER.getTypeFactory().constructParametricType(ArrayList.class, clazz);
+    }
+
+    /** 
+     * 获取json转map类型描述对象
+     * 
+     * @author Robin
+     * @date 2017-01-29 07:53:08 
+     * @version v1.0 
+     * @param clazz      map中存储的目标对象类型
+     * @return 
+     */
+    public static <T> JavaType getMapType(Class<T> clazz) {
+        return MAPPER.getTypeFactory().constructParametricType(HashMap.class, String.class, clazz);
+    }
+
+}
