@@ -19,11 +19,76 @@
   <url>http://maven.apache.org</url>
   
   <dependencies>
-    
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-common-dal</artifactId>
+  	 </dependency>
+  	 
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-common-service-facade</artifactId>
+  	 </dependency>
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-common-service-integration</artifactId>
+  	 </dependency>
+  	 
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-common-util</artifactId>
+  	 </dependency>
+  	 
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-core-model</artifactId>
+  	 </dependency>
+  	 
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-core-service</artifactId>
+  	 </dependency>
+  	 
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-biz-shared</artifactId>
+  	 </dependency>
+  	 
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-biz-service-impl</artifactId>
+  	 </dependency>
+  	 
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-biz-manager</artifactId>
+  	 </dependency>
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-assembly-template</artifactId>
+  	 </dependency>
+  	 
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-web-home</artifactId>
+  	 </dependency>
+  	 
+  	 
+  	 
+  	 
+  	 
   </dependencies>
   
   <build>
-    <finalName>workbanch-app-webapp</finalName>
+    <finalName>workbanch</finalName>
   </build>
   
 </project>
