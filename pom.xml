@@ -869,7 +869,6 @@
     <module>app/common/service/facade</module>
     <module>app/web/home</module>
     <module>app/tester</module>
-    <module>app/webapp</module>
     <module>assembly/template</module>
   </modules>
   
