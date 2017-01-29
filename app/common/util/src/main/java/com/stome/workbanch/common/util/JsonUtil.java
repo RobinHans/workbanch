@@ -4,6 +4,7 @@
  */
 package com.stome.workbanch.common.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +12,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
+import org.codehaus.jackson.map.SerializerProvider;
 import org.codehaus.jackson.type.JavaType;
 import org.codehaus.jackson.type.TypeReference;
 
@@ -27,28 +33,56 @@ import org.codehaus.jackson.type.TypeReference;
 public class JsonUtil {
 
     /** log4j component */
-    private static final Logger       LOGGER = Logger.getLogger(JsonUtil.class);
+    private static final Logger       LOGGER       = Logger.getLogger(JsonUtil.class);
 
     /** ObjectMapper对象 */
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECTMAPPER = new ObjectMapper();
 
     static {
-        // 是否允许解析使用Java/C++ 样式的注释（包括'/'+'*' 和'//' 变量）
-        MAPPER.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+        // 是否允许解析使用Java/C++ 样式的注释
+        OBJECTMAPPER.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
         // 是否将允许使用非双引号属性名字
-        MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        OBJECTMAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         // 是否允许单引号来包住属性名称和字符串值
-        MAPPER.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-        // 是否允许JSON字符串包含非引号控制字符（值小于32的ASCII字符，包含制表符和换行符）。 如果该属性关闭，则如果遇到这些字符，则会抛出异常
-        MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
-        // 属性名称是否可以被String#intern 规范化表示，注意必须设置CANONICALIZE_FIELD_NAMES为true
-        MAPPER.configure(JsonParser.Feature.INTERN_FIELD_NAMES, true);
-        // 属性名称是否被规范化。
-        MAPPER.configure(JsonParser.Feature.CANONICALIZE_FIELD_NAMES, true);
-        // 当遇到未知属性（没有映射到属性，没有任何setter或者任何可以处理它的handler），是否应该抛出一个JsonMappingException异常
-        MAPPER.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        // 当遇到JSON null的对象是java 原始类型，则是否抛出异常。当false时，则使用0 for 'int', 0.0 for double 来设定原始对象初始值。
-        MAPPER.configure(DeserializationConfig.Feature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
+        OBJECTMAPPER.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        // 取消对非ASCII字符的转码
+        OBJECTMAPPER.configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, false);
+        // 是否允许JSON字符串包含非引号控制字符（值小于32的ASCII字符，包含制表符和换行符）。
+        // 如果该属性关闭，则如果遇到这些字符，则会抛出异常。
+        // 允许出现特殊字符和转义符
+        // 标准json中,要求键和值其实都是要双引号的.
+        // 但如果非要设置键值为非双引号不可的话,则需要设置JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES,如下:
+        OBJECTMAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, false);
+        // JSON对象属性名称是否可以被String#intern 规范化表示
+        OBJECTMAPPER.configure(JsonParser.Feature.INTERN_FIELD_NAMES, true);
+        // JSON对象的属性名称是否被规范化
+        OBJECTMAPPER.configure(JsonParser.Feature.CANONICALIZE_FIELD_NAMES, true);
+        /**
+         * 该特性决定了当遇到未知属性（没有映射到属性，没有任何setter或者任何可以处理它的handler），是否应该抛出一个
+         * JsonMappingException异常。这个特性一般式所有其他处理方法对未知属性处理都无效后才被尝试，属性保留未处理状态。
+         *
+         * 默认情况下，该设置是被打开的。
+         *
+         * @since 1.2
+         */
+        OBJECTMAPPER.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // 禁用序列化日期为timestamps
+        OBJECTMAPPER.configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, false);
+        //
+        OBJECTMAPPER.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
+        // 数字加引号
+        OBJECTMAPPER.configure(JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS, false);
+        OBJECTMAPPER.configure(JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS, false);
+        OBJECTMAPPER.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
+
+            @Override
+            public void serialize(Object arg0, JsonGenerator arg1,
+                                  SerializerProvider arg2) throws IOException,
+                                                           JsonProcessingException {
+                arg1.writeString("");
+            }
+        });
+
     }
 
     /** 
@@ -62,7 +96,7 @@ public class JsonUtil {
      */
     public static String object2Json(Object obj) {
         try {
-            return MAPPER.writeValueAsString(obj);
+            return OBJECTMAPPER.writeValueAsString(obj);
         } catch (Exception e) {
             LOGGER.error("converting object to json string occured errors", e);
         }
@@ -81,7 +115,7 @@ public class JsonUtil {
      */
     public static <T> T json2Object(String json, Class<T> clazz) {
         try {
-            return MAPPER.readValue(json, clazz);
+            return OBJECTMAPPER.readValue(json, clazz);
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error("converting json string to object occured errors", e);
@@ -101,7 +135,7 @@ public class JsonUtil {
      */
     public static <T> T json2Object(String json, TypeReference<T> typeReference) {
         try {
-            return MAPPER.readValue(json, typeReference);
+            return OBJECTMAPPER.readValue(json, typeReference);
         } catch (Exception e) {
             LOGGER.error("converting json string to object occured errors", e);
         }
@@ -120,7 +154,7 @@ public class JsonUtil {
      */
     public static <T> List<T> json2List(String json, TypeReference<List<T>> typeReference) {
         try {
-            return MAPPER.readValue(json, typeReference);
+            return OBJECTMAPPER.readValue(json, typeReference);
         } catch (Exception e) {
             LOGGER.error("converting json string to list occured errors", e);
         }
@@ -140,7 +174,7 @@ public class JsonUtil {
     public static <T> List<T> json2List(String json, Class<T> clazz) {
         try {
             JavaType javaType = getCollectionType(clazz);
-            return MAPPER.readValue(json, javaType);
+            return OBJECTMAPPER.readValue(json, javaType);
         } catch (Exception e) {
             LOGGER.error("converting json string to list occured errors", e);
         }
@@ -160,7 +194,7 @@ public class JsonUtil {
     public static <T> Map<String, T> json2Map(String json, Class<T> clazz) {
         try {
             JavaType javaType = getMapType(clazz);
-            return MAPPER.readValue(json, javaType);
+            return OBJECTMAPPER.readValue(json, javaType);
         } catch (Exception e) {
             LOGGER.error("converting json string to map occured errors", e);
         }
@@ -179,7 +213,7 @@ public class JsonUtil {
      */
     public static <T> Map<String, T> json2Map(Class<T> clazz, String json) {
         try {
-            Map<String, Map<String, Object>> map = MAPPER.readValue(json,
+            Map<String, Map<String, Object>> map = OBJECTMAPPER.readValue(json,
                 new TypeReference<Map<String, T>>() {
                 });
             Map<String, T> result = new HashMap<String, T>();
@@ -207,7 +241,7 @@ public class JsonUtil {
     @SuppressWarnings("rawtypes")
     public static <T> T map2Object(Map map, Class<T> clazz) {
         try {
-            return MAPPER.convertValue(map, clazz);
+            return OBJECTMAPPER.convertValue(map, clazz);
         } catch (Exception e) {
             LOGGER.error("converting map to object occured errors", e);
         }
@@ -223,7 +257,7 @@ public class JsonUtil {
      * @return 
      */
     public static <T> JavaType getCollectionType(Class<T> clazz) {
-        return MAPPER.getTypeFactory().constructParametricType(ArrayList.class, clazz);
+        return OBJECTMAPPER.getTypeFactory().constructParametricType(ArrayList.class, clazz);
     }
 
     /** 
@@ -236,7 +270,8 @@ public class JsonUtil {
      * @return 
      */
     public static <T> JavaType getMapType(Class<T> clazz) {
-        return MAPPER.getTypeFactory().constructParametricType(HashMap.class, String.class, clazz);
+        return OBJECTMAPPER.getTypeFactory().constructParametricType(HashMap.class, String.class,
+            clazz);
     }
 
 }
