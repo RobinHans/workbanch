@@ -12,11 +12,11 @@
   </parent>
   
   <packaging>jar</packaging>
-  <artifactId>workbanch-test</artifactId>
+  <artifactId>workbanch-tester</artifactId>
   
   
-  <name>Stome workbanch-test</name>
-  <description>Stome workbanch-test</description>
+  <name>Stome workbanch-tester</name>
+  <description>Stome workbanch-tester</description>
   <url>http://maven.apache.org</url>
    
   <dependencies>

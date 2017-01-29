@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>workbanch-biz-shared</name>
-  <comment>Stome workbanch-biz-shared. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <name>workbanch-biz-manager</name>
+  <comment>tome workbanch-biz-manager. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
     <project>workbanch-core-service</project>
     <project>workbanch-common-dal</project>

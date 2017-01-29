@@ -2,7 +2,12 @@
 <projectDescription>
   <name>workbanch-core-service</name>
   <comment>Stome workbanch-common-dal. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
+  <projects>
+    <project>workbanch-common-dal</project>
+    <project>workbanch-common-service-integration</project>
+    <project>workbanch-core-model</project>
+    <project>workbanch-common-util</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>

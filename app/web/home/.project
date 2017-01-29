@@ -2,7 +2,14 @@
 <projectDescription>
   <name>workbanch-web-home</name>
   <comment>Stome workbanch-web-home. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
+  <projects>
+    <project>workbanch-core-service</project>
+    <project>workbanch-common-dal</project>
+    <project>workbanch-common-service-integration</project>
+    <project>workbanch-core-model</project>
+    <project>workbanch-common-util</project>
+    <project>workbanch-biz-manager</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>

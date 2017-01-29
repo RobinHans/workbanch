@@ -19,6 +19,25 @@
   <url>http://maven.apache.org</url>
    
   <dependencies>
-     
+  
+     <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-core-service</artifactId>
+  	 </dependency>
+  	 
+  	 <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-core-model</artifactId>
+  	 </dependency>
+  	 
+  	 <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-common-util</artifactId>
+  	 </dependency>
+  	 
+  	 <dependency>
+  		<groupId>com.stome.workbanch</groupId>
+  		<artifactId>workbanch-biz-manager</artifactId>
+  	 </dependency>
   </dependencies>
 </project>

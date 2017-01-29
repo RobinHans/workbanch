@@ -513,7 +513,73 @@
 	      <version>1.4</version>
 	  </dependency>
 
+	  <!-- 项目依赖 -->
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-common-dal</artifactId>
+		  <version>1.0</version>
+	  </dependency>
 	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-common-util</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-common-service-integration</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-common-service-facade</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-core-model</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-core-service</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-biz-shared</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-biz-manager</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-biz-service-impl</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-web-home</artifactId>
+		  <version>1.0</version>
+	  </dependency>
+	  
+	  <dependency>
+		  <groupId>com.stome.workbanch</groupId>
+		  <artifactId>workbanch-tester</artifactId>
+		  <version>1.0</version>
+	  </dependency>
 	  
 	  
   	</dependencies>
@@ -794,12 +860,13 @@
   <modules>
     <module>app/common/dal</module>
     <module>app/common/util</module>
-    <module>app/core/service</module>
     <module>app/core/model</module>
-    <module>app/common/service/facade</module>
     <module>app/common/service/integration</module>
+    <module>app/core/service</module>
     <module>app/biz/shared</module>
+    <module>app/biz/manager</module>
     <module>app/biz/service-impl</module>
+    <module>app/common/service/facade</module>
     <module>app/web/home</module>
     <module>app/tester</module>
     <module>assembly/template</module>
