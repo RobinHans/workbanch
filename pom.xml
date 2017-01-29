@@ -13,6 +13,8 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<!--指定Maven用什么编码来呈现站点的HTML文件 -->
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.timestamp>yyyy-MM-dd_HH_mm</project.build.timestamp>
     <org.springframework.version>4.2.0.RELEASE</org.springframework.version>
     <org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
@@ -764,6 +766,9 @@
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-war-plugin</artifactId>
 		    <version>3.0.0</version>
+			<configuration>
+			    <failOnMissingWebXml>false</failOnMissingWebXml>
+			</configuration>
 		</plugin>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
