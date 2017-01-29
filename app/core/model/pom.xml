@@ -11,7 +11,6 @@
 	<relativePath>../../../pom.xml</relativePath>
   </parent>
   
-  <packaging>jar</packaging>
   <artifactId>workbanch-core-model</artifactId>
 
   <name>Stome workbanch-core-model</name>
@@ -20,10 +19,5 @@
  
   <dependencies>
   
-      <dependency>
-	      <groupId>com.stome.workbanch</groupId>
-	      <artifactId>workbanch-common-util</artifactId>
-	  </dependency>
-	  
   </dependencies>
 </project>

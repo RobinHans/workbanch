@@ -13,8 +13,6 @@
   
   
   <artifactId>workbanch-common-util</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0</version>
   
   
   <name>Stome workbanch-common-util</name>
@@ -22,15 +20,16 @@
   <url>http://maven.apache.org</url>
  
   <dependencies>
+  
       <dependency>
 	      <groupId>org.codehaus.jackson</groupId>
 	      <artifactId>jackson-core-lgpl</artifactId>
 	  </dependency>
 	  
-	  <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-lgpl -->
 	  <dependency>
 	      <groupId>org.codehaus.jackson</groupId>
 	      <artifactId>jackson-mapper-lgpl</artifactId>
 	  </dependency>
+	  
   </dependencies>
 </project>

@@ -11,7 +11,6 @@
 	<relativePath>../../../pom.xml</relativePath>
   </parent>
   
-  <packaging>jar</packaging>
   <artifactId>workbanch-core-service</artifactId>
 
   <name>Stome workbanch-core-service</name>
@@ -19,21 +18,26 @@
   <url>http://maven.apache.org</url>
 
   <dependencies>
+  
       <dependency>
 	      <groupId>com.stome.workbanch</groupId>
   		  <artifactId>workbanch-common-dal</artifactId>
 	  </dependency>
+	  
       <dependency>
 	      <groupId>com.stome.workbanch</groupId>
   		  <artifactId>workbanch-common-service-integration</artifactId>
 	  </dependency>
+	  
       <dependency>
 	      <groupId>com.stome.workbanch</groupId>
   		  <artifactId>workbanch-core-model</artifactId>
 	  </dependency>
+	  
       <dependency>
 	      <groupId>com.stome.workbanch</groupId>
   		  <artifactId>workbanch-common-util</artifactId>
 	  </dependency>
+	  
   </dependencies>
 </project>
