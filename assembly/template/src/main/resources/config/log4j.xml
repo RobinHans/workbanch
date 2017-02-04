@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<!-- Log4j配置文件。 -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- ===================================================================== -->
+	<!-- Appenders -->
+	<!-- ===================================================================== -->
+	<!-- [Error Appender] 错误日志 -->
+	<appender name="COMMON-ERROR-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/common-error.log"/>
+		<param name="append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS}  %r %-5p %l %c{2} - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="DEFAULT-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/workbanch-default.log"/>
+		<param name="append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS}  %r %-5p %l %c{2} - %m%n"/>
+		</layout>
+	</appender>
+	
+	<!-- ===================================================================== -->
+	<!-- Loggers -->
+	<!-- ===================================================================== -->
+	<logger name="DEFAULT_LOGGER" additivity="false">
+		<level value="info" />
+		<appender-ref ref="DEFAULT-APPENDER" />
+		<appender-ref ref="COMMON-ERROR-APPENDER" />
+	</logger>
+
+	<!-- ===================================================================== -->
+	<!-- Root logger -->
+	<!-- ===================================================================== -->
+	<root>
+		<level value="info" />
+		<appender-ref ref="DEFAULT-APPENDER" />
+		<appender-ref ref="COMMON-ERROR-APPENDER" />
+	</root>
+
+</log4j:configuration>
+

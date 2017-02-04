@@ -24,96 +24,7 @@
   
   <dependencies>
 	  
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-context</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-core</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-beans</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-web</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-webmvc</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-aop</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-tx</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-context-support</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-orm</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-oxm -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-oxm</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-aspects</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-jms</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
-
-  	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
-  	  <dependency>
-  	      <groupId>org.springframework</groupId>
-  	      <artifactId>spring-messaging</artifactId>
-  	      <version>${org.springframework.version}</version>
-  	  </dependency>
+  	  
 	  
 	  
 	  <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -157,18 +68,104 @@
 	      <groupId>commons-logging</groupId>
 	      <artifactId>commons-logging</artifactId>
 	      <version>1.2</version>
-	  </dependency>
-
-	  
-
-
-	  
+	  </dependency>  
 	  
   </dependencies>
   
   <dependencyManagement>
   	<dependencies>
   	  
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-context</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-core</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-beans</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-web</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-webmvc</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-aop</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-tx</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-context-support</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-orm</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-oxm -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-oxm</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-aspects</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-jms</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
+	  <dependency>
+	      <groupId>org.springframework</groupId>
+	      <artifactId>spring-messaging</artifactId>
+	      <version>${org.springframework.version}</version>
+	  </dependency>
+		  
 	  
 	  <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
 	  <dependency>
